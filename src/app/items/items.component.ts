@@ -13,7 +13,8 @@ export class ItemsComponent implements OnInit {
 
   eventid:any; 
   itemForm:any; 
-  eventname:any; 
+  eventname:any;  
+  submitScoreFlag:boolean =false;
 
   ngOnInit(): void { 
 
@@ -29,12 +30,18 @@ export class ItemsComponent implements OnInit {
         });
       });
     });
-  } 
+  }  
 
   submitScore(itemid:any)
-  {
-    let score=(<HTMLInputElement>document.getElementById('selectedScore')).value;
-    console.log("Score : ",score);
+  { 
+    console.log("itemID :",itemid);
+    let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;
+    console.log("Score : ",score); 
+    var scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
+    this.service.submitScore(scoreObj).subscribe(data=>{
+      console.log(data)
+    })
+
   }
 
 }
