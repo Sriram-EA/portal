@@ -11,14 +11,21 @@ export class UserdashboardComponent implements OnInit {
   constructor(private service:UserdashboardService) { } 
 
   firstName:any; 
-  lastName:any;
+  lastName:any;   
+  eventData:any;
+
 
   ngOnInit(): void {  
 
-    this.service.getUserData(localStorage.getItem("id")).subscribe(data=>{
+    this.service.getUserData(localStorage.getItem("psno")).subscribe(data=>{
       console.log(data[0]); 
-      this.firstName=data[0].FIRSTNAME; 
-      this.lastName=data[0].LASTNAME;
+      this.firstName=data[0].firstname; 
+      this.lastName=data[0].lastname;  
+      this.service.getEventDetails().subscribe(eventdata=>{ 
+        this.eventData=eventdata; 
+        console.log(eventdata);
+      });
+
     })
   
   }  

@@ -1,1 +1,82 @@
-<p>Welcome <strong>{{firstName}} {{lastName}} </strong></p>
+<p>Welcome <strong>{{firstName}} {{lastName}} </strong></p> 
+
+<div>
+    <table>  
+        <thead> 
+            <th>
+                Running Events 
+            </th>
+        </thead>
+        <tbody>
+              <tr  *ngFor = "let e of eventData;">    
+                <div *ngIf="e.eventflag == 'R'" class="container">    
+                    &nbsp;    
+                    <td> {{e.eventid}} </td>
+                    <td> {{e.eventname}} </td>    
+                    <td> {{e.eventdate}} </td>
+                    <td> {{e.starttime}} </td>
+                    <td> {{e.endtime}} </td>
+                    <td> {{e.organizername}} </td>
+                    <td> {{e.accountname}} </td>  
+                    <td> {{e.eventflag}} </td>  
+                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td> 
+                    <hr> 
+                </div>
+            </tr> 
+        </tbody>
+    </table>
+</div>  
+
+<div>
+    <table>  
+        <thead> 
+            <th>
+                Upcoming Scheduled Events 
+            </th>
+        </thead>
+        <tbody>
+              <tr  *ngFor = "let e of eventData;">    
+                <div *ngIf="e.eventflag == 'S'" class="container">        
+                    &nbsp;
+                    <td> {{e.eventid}} </td>
+                    <td> {{e.eventname}} </td>    
+                    <td> {{e.eventdate}} </td>
+                    <td> {{e.starttime}} </td>
+                    <td> {{e.endtime}} </td>
+                    <td> {{e.organizername}} </td>
+                    <td> {{e.accountname}} </td>  
+                    <td> {{e.eventflag}} </td>    
+                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td> 
+                    <hr> 
+                </div>
+            </tr> 
+        </tbody>
+    </table>
+</div>  
+
+<div>
+    <table> 
+        <thead> 
+            <th>
+                Closed Events 
+            </th>
+        </thead>
+        <tbody>
+              <tr  *ngFor = "let e of eventData;">    
+                <div *ngIf="e.eventflag == 'C'" class="container">    
+                    &nbsp;    
+                    <td> {{e.eventid}} </td>
+                    <td> {{e.eventname}} </td>    
+                    <td> {{e.eventdate}} </td>
+                    <td> {{e.starttime}} </td>
+                    <td> {{e.endtime}} </td>
+                    <td> {{e.organizername}} </td>
+                    <td> {{e.accountname}} </td>  
+                    <td> {{e.eventflag}} </td>  
+                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td>   
+                    <hr> 
+                </div>
+            </tr> 
+        </tbody>
+    </table>
+</div> 

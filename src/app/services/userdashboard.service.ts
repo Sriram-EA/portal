@@ -15,5 +15,10 @@ export class UserdashboardService {
   getUserData(id:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/getuserdetails/'+id);
+  } 
+
+  getEventDetails():Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/geteventdetails');
   }
 }

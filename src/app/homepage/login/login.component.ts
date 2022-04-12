@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
   constructor(private service: LoginService,private router:Router) {}
 
   loginForm = new FormGroup({
-    emailId: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    psno: new FormControl('', Validators.required),
+    dob: new FormControl('', Validators.required),
   });
 
   ngOnInit(): void {}
@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.service.IsEmailValid(this.loginForm.value).subscribe((data) => {
       console.log('Login service called');
-      console.log(data.message, data.id);
+      console.log(data.message, data.psno);
 
       if (data.message === 'Matching Successful') {
         //Matching Successful    // User Does not exist  //  Incorrect Password 
         this.errorFlag=false;
         console.log('Login to User Dashboard and navigate');  
-        localStorage.setItem("id",data.id);
+        localStorage.setItem("psno",data.psno);
         this.router.navigate(['userdashboard']);
       }
       if (data.message === 'User Does not exist') {
