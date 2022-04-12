@@ -20,5 +20,15 @@ export class UserdashboardService {
   getEventDetails():Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/geteventdetails');
+  } 
+
+  getStatusFlagDetails():Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/getstatusflagdetails');
+  }
+
+  subscribeUserToEvent(data:any):Observable<any>
+  {
+    return this.http.post(`${this.baseUrl}`+'/subscribeusertoevent',data);
   }
 }

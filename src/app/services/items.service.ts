@@ -14,6 +14,11 @@ export class ItemsService {
   getItemDetail(eventid:any):Observable<any>{
 
     return this.http.get(`${this.baseUrl}`+'/getitemdetail/'+eventid);
+  } 
+
+  getEventName(eventid:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/geteventname/'+eventid)
   }
 
 

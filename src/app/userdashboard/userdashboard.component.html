@@ -1,82 +1,130 @@
 <p>Welcome <strong>{{firstName}} {{lastName}} </strong></p> 
 
-<div>
-    <table>  
-        <thead> 
-            <th>
-                Running Events 
-            </th>
-        </thead>
-        <tbody>
-              <tr  *ngFor = "let e of eventData;">    
-                <div *ngIf="e.eventflag == 'R'" class="container">    
-                    &nbsp;    
-                    <td> {{e.eventid}} </td>
-                    <td> {{e.eventname}} </td>    
-                    <td> {{e.eventdate}} </td>
-                    <td> {{e.starttime}} </td>
-                    <td> {{e.endtime}} </td>
-                    <td> {{e.organizername}} </td>
-                    <td> {{e.accountname}} </td>  
-                    <td> {{e.eventflag}} </td>  
-                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td> 
-                    <hr> 
-                </div>
-            </tr> 
-        </tbody>
-    </table>
-</div>  
 
-<div>
-    <table>  
-        <thead> 
-            <th>
-                Upcoming Scheduled Events 
-            </th>
+<!-- Sample Running table --> 
+<div> 
+    &nbsp;
+    <div class="container">
+        <strong> Running Events table</strong>
+    </div> 
+    &nbsp; 
+    <div class="container" *ngIf="!runningFlag">
+        <strong>No Running Events Available.</strong>  &nbsp;
+    </div>
+    <table class="table" *ngIf="runningFlag">
+        <thead class="thead-dark"> 
+         &nbsp;
+          <tr>
+            <th scope="col">Event Id</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Start Time</th> 
+            <th scope="col">End Time</th>
+            <th scope="col">Organizer Name</th> 
+            <th scope="col">Account Name</th> 
+            <th scope="col">Event Flag</th> 
+            <th scope="col">Action</th>
+          </tr>
         </thead>
-        <tbody>
-              <tr  *ngFor = "let e of eventData;">    
-                <div *ngIf="e.eventflag == 'S'" class="container">        
-                    &nbsp;
-                    <td> {{e.eventid}} </td>
-                    <td> {{e.eventname}} </td>    
-                    <td> {{e.eventdate}} </td>
-                    <td> {{e.starttime}} </td>
-                    <td> {{e.endtime}} </td>
-                    <td> {{e.organizername}} </td>
-                    <td> {{e.accountname}} </td>  
-                    <td> {{e.eventflag}} </td>    
-                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td> 
-                    <hr> 
-                </div>
-            </tr> 
+        <tbody> 
+        &nbsp;
+          <tr *ngFor = "let e of eventData;"> 
+            <th scope="row" *ngIf="e.eventflag == 'R'">{{e.eventid}}</th>
+            <td *ngIf="e.eventflag == 'R'">{{e.eventname}} </td>
+            <td *ngIf="e.eventflag == 'R'">{{e.eventdate}}</td>
+            <td *ngIf="e.eventflag == 'R'">{{e.starttime}}</td> 
+            <td *ngIf="e.eventflag == 'R'">{{e.endtime}}</td>
+            <td *ngIf="e.eventflag == 'R'">{{e.organizername}}</td>
+            <td *ngIf="e.eventflag == 'R'">{{e.accountname}}</td> 
+            <td *ngIf="e.eventflag == 'R'">{{e.eventflag}} </td> 
+            <td *ngIf="e.eventflag == 'R'"> <a [routerLink]="['/items', e.eventid]" class="btn btn-danger" role="button" routerLinkActive="active" (click)="joinEvent(e.eventid)">Join event</a> </td> 
+          </tr>
         </tbody>
-    </table>
-</div>  
-
-<div>
-    <table> 
-        <thead> 
-            <th>
-                Closed Events 
-            </th>
-        </thead>
-        <tbody>
-              <tr  *ngFor = "let e of eventData;">    
-                <div *ngIf="e.eventflag == 'C'" class="container">    
-                    &nbsp;    
-                    <td> {{e.eventid}} </td>
-                    <td> {{e.eventname}} </td>    
-                    <td> {{e.eventdate}} </td>
-                    <td> {{e.starttime}} </td>
-                    <td> {{e.endtime}} </td>
-                    <td> {{e.organizername}} </td>
-                    <td> {{e.accountname}} </td>  
-                    <td> {{e.eventflag}} </td>  
-                    <td> <a [routerLink]="['/items', e.eventid]" class="btn btn-primary active" role="button" routerLinkActive="active">Join event</a> </td>   
-                    <hr> 
-                </div>
-            </tr> 
-        </tbody>
-    </table>
+      </table>
 </div> 
+
+<!-- Sample Upcoming Scheduled Events --> 
+<div>  
+    &nbsp;
+    <div class="container">
+        <strong> Upcoming Scheduled Events </strong>
+    </div> 
+    &nbsp; 
+    <div class="container" *ngIf="!scheduledFlag">
+        <strong> No Upcoming Events have been scheduled </strong> 
+        &nbsp;
+    </div>
+    <table class="table" *ngIf="scheduledFlag">
+        <thead class="thead-dark"> 
+        &nbsp;
+          <tr>
+            <th scope="col">Event Id</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Start Time</th> 
+            <th scope="col">End Time</th>
+            <th scope="col">Organizer Name</th> 
+            <th scope="col">Account Name</th> 
+            <th scope="col">Event Flag</th> 
+          </tr>
+        </thead>
+        <tbody> 
+        &nbsp;
+          <tr *ngFor = "let e of eventData;"> 
+            <th scope="row" *ngIf="e.eventflag == 'S'">{{e.eventid}}</th>
+            <td *ngIf="e.eventflag == 'S'">{{e.eventname}} </td>
+            <td *ngIf="e.eventflag == 'S'">{{e.eventdate}}</td>
+            <td *ngIf="e.eventflag == 'S'">{{e.starttime}}</td> 
+            <td *ngIf="e.eventflag == 'S'">{{e.endtime}}</td>
+            <td *ngIf="e.eventflag == 'S'">{{e.organizername}}</td>
+            <td *ngIf="e.eventflag == 'S'">{{e.accountname}}</td> 
+            <td *ngIf="e.eventflag == 'S'">{{e.eventflag}} </td>
+          </tr>
+        </tbody>
+      </table>
+</div> 
+
+
+<!-- Sample Closed Events--> 
+<div>  
+    &nbsp;
+    <div class="container">
+        <strong>Closed Events table</strong>
+    </div> 
+    &nbsp; 
+    <div class="container" *ngIf="!cancelledFlag">
+        <strong> No Cancelled Events Available. </strong> 
+        &nbsp;
+    </div>
+    <table class="table" *ngIf="cancelledFlag">
+        <thead class="thead-dark"> 
+            &nbsp;
+          <tr>
+            <th scope="col">Event Id</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Start Time</th> 
+            <th scope="col">End Time</th>
+            <th scope="col">Organizer Name</th> 
+            <th scope="col">Account Name</th> 
+            <th scope="col">Event Flag</th> 
+
+          </tr>
+        </thead>
+        <tbody> 
+            &nbsp;
+          <tr *ngFor = "let e of eventData;"> 
+            <th scope="row" *ngIf="e.eventflag == 'C'">{{e.eventid}}</th>
+            <td *ngIf="e.eventflag == 'C'">{{e.eventname}} </td>
+            <td *ngIf="e.eventflag == 'C'">{{e.eventdate}}</td>
+            <td *ngIf="e.eventflag == 'C'">{{e.starttime}}</td> 
+            <td *ngIf="e.eventflag == 'C'">{{e.endtime}}</td>
+            <td *ngIf="e.eventflag == 'C'">{{e.organizername}}</td>
+            <td *ngIf="e.eventflag == 'C'">{{e.accountname}}</td> 
+            <td *ngIf="e.eventflag == 'C'">{{e.eventflag}} </td> 
+          </tr>
+        </tbody>
+      </table>
+</div> 
+
+
