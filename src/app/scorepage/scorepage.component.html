@@ -1,0 +1,48 @@
+
+<table class="table">
+    <thead class="thead-dark"> 
+    &nbsp;
+      <tr>
+        <th scope="col">Item Id</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Presenter Name</th>
+        <th scope="col">Event Id</th>  
+      </tr>
+    </thead>
+    <tbody> 
+        &nbsp; 
+        <tr *ngFor = "let i of itemData;"> 
+            <th scope="row">{{i.itemid}}</th>
+            <td>{{i.itemname}} </td>
+            <td>{{i.presentername}}</td>
+            <td>{{i.eventid}}</td>
+        </tr>
+    </tbody> 
+</table>  
+
+<br>
+<br>
+<Strong style="margin-left: 35%;"> Select your Score in the Dropdown</Strong>
+<br> 
+<br>
+
+<select id="{{itemid}}" style="margin-left: 40%;">
+    <option value="" selected>Select Score</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option> 
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option> 
+    <option value="10">10</option>
+</select>
+<br> 
+<br>
+<br>
+<div><button class="btn btn-success"  (click)="submitScore()" style="margin-left: 40%;">Submit score</button></div>
+
+
+

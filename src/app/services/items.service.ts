@@ -18,12 +18,17 @@ export class ItemsService {
 
   getEventName(eventid:any):Observable<any>
   {
-    return this.http.get(`${this.baseUrl}`+'/geteventname/'+eventid)
+    return this.http.get(`${this.baseUrl}`+'/geteventname/'+eventid);
   }
   
   submitScore(data:any):Observable<any>
   {
     return this.http.post(`${this.baseUrl}`+'/submitscore',data);
+  } 
+
+  getScoreDetails(psno:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/getscoredetails/'+psno);
   }
 
 }

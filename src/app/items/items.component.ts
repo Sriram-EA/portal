@@ -1,5 +1,6 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemsService } from '../services/items.service';
 
 @Component({
@@ -9,39 +10,72 @@ import { ItemsService } from '../services/items.service';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor(private service:ItemsService, private actRoute:ActivatedRoute) { } 
+  constructor(private service:ItemsService, private actRoute:ActivatedRoute, private router:Router) { } 
 
   eventid:any; 
   itemForm:any; 
-  eventname:any;  
+  eventname:any;   
+  scoreDetails:any;  
+  scoreItemidArray: Number[] =[]; 
+  scoreArray: any[]= []; 
+  scoreDisplayFlag: boolean = false; 
+  score:any;
+   
   submitScoreFlag:boolean =false;
 
-  ngOnInit(): void { 
-
+  ngOnInit(): void {  
+    
     this.actRoute.paramMap.subscribe(data=>{ 
       console.log(data.get('eventid')); 
       this.eventid=data.get('eventid'); 
       this.service.getItemDetail(this.eventid).subscribe(data=>{
         console.log(data); 
-        this.itemForm=data;   
+        this.itemForm=data;    
         this.service.getEventName(this.eventid).subscribe(data=>{
           this.eventname=data[0].eventname; 
-          console.log(this.eventname);
+          console.log(this.eventname); 
+          this.service.getScoreDetails(localStorage.getItem("psno")).subscribe(data=>{
+            this.scoreDetails=data;  
+            // Save in ItemId array; 
+            for(let i=0;i<this.scoreDetails.length;i++)
+            {
+              this.scoreItemidArray[i]= this.scoreDetails[i].itemid;   
+            }  
+            //console.log("Score Itemid Array", this.scoreItemidArray);
+            for(let i=0;i<this.scoreDetails.length;i++)
+            { 
+                this.scoreArray[i]={"itemid":this.scoreDetails[i].itemid , "score" :this.scoreDetails[i].score};
+            } 
+           // console.log("Score Array", this.scoreArray);
+            
+          })
         });
       });
-    });
-  }  
+    });   
+    
+  }    
 
-  submitScore(itemid:any)
+  giveScore(itemid:any)
   { 
-    console.log("itemID :",itemid);
-    let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;
-    console.log("Score : ",score); 
-    var scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
-    this.service.submitScore(scoreObj).subscribe(data=>{
-      console.log(data)
-    })
+    console.log("itemID :",itemid); 
+    console.log("Score Itemid Array", this.scoreItemidArray);   
+    console.log("Score Array", this.scoreArray);  
+ 
+    // let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;
+    // console.log("Score : ",score); 
+    // var scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
+    // this.service.submitScore(scoreObj).subscribe(data=>{
+    //   console.log(data)
+    // });
 
-  }
+  } 
+
+  // getYourScore(itemid:any)
+  // { 
+  //   this.scoreDisplayFlag=true;
+  //   this.score = this.scoreArray.findIndex(x => x.itemid === itemid); 
+  //   console.log(this.score); 
+    
+  // }
 
 }
