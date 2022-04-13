@@ -23,13 +23,18 @@
         <td>{{i.presentername}}</td>
         <td>{{i.eventid}}</td> 
         <td> 
-          <div *ngIf="scoreItemidArray.indexOf(i.itemid) > -1"> Score Already submitted</div>
+          <div *ngIf="scoreItemidArray.indexOf(i.itemid) > -1"> <strong>Score Already submitted</strong></div>
           <a [routerLink]="['/score', i.itemid]" class="btn btn-danger" role="button" routerLinkActive="active" *ngIf="scoreItemidArray.indexOf(i.itemid) == -1" (click)="giveScore(i.itemid)"> Give Score </a>
         </td> 
         <td>
           <a [routerLink]="['/score', i.itemid]" class="btn btn-success" role="button" routerLinkActive="active" *ngIf="scoreItemidArray.indexOf(i.itemid) > -1" (click)="viewScore(i.itemid)"> View Score </a> 
-          <div *ngIf="scoreItemidArray.indexOf(i.itemid) == -1"> Submit your Score to View</div>
+          <div *ngIf="scoreItemidArray.indexOf(i.itemid) == -1"> <strong>Submit your Score to View</strong></div>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <br>
+  <br> 
+
+  <a [routerLink]="['/userdashboard']" class="btn btn-danger" role="button" routerLinkActive="active"> Go Back </a> 

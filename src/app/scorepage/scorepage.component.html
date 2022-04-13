@@ -63,3 +63,7 @@
 
 </div>
 
+
+<br>
+<br>
+<a *ngFor="let i of itemData;" [routerLink]="['/items',i.eventid]" class="btn btn-danger" role="button" routerLinkActive="active">Go Back</a> 

@@ -11,7 +11,8 @@ import { ScorepageService } from '../services/scorepage.service';
 export class ScorepageComponent implements OnInit {
 
   constructor(private actRoute : ActivatedRoute,private service:ScorepageService, private router:Router) { } 
-
+ 
+  eventid:any;
   itemid:any; 
   itemData:any; 
   scoreErrorFlag:boolean = false; 
@@ -66,13 +67,14 @@ export class ScorepageComponent implements OnInit {
       this.scoreErrorFlag=false; 
       this.scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
       this.service.InsertScoreToDatabase(this.scoreObj).subscribe(data=>{
-        this.scoreResponseMessage=(data.message); 
+        this.scoreResponseMessage=(data.message);  
+        this.eventid=data.eventid;
         console.log(this.scoreResponseMessage); 
 
         if(this.scoreResponseMessage==="Score submitted successfully") 
         {
           alert("Score Submitted Successfully"); 
-          this.router.navigate(['userdashboard']);
+          this.router.navigate(['items/',this.eventid]);
         } 
         else if(this.scoreResponseMessage==="This event has been closed")
         {

@@ -37,7 +37,7 @@
             <td *ngIf="e.eventflag == 'R'">{{e.organizername}}</td>
             <td *ngIf="e.eventflag == 'R'">{{e.accountname}}</td> 
             <td *ngIf="e.eventflag == 'R'">{{e.eventflag}} </td> 
-            <td *ngIf="e.eventflag == 'R'"> <a [routerLink]="['/items', e.eventid]" class="btn btn-danger" role="button" routerLinkActive="active" (click)="joinEvent(e.eventid)">Join event</a> </td> 
+            <td *ngIf="e.eventflag == 'R'"> <a [routerLink]="['/items', e.eventid]" class="btn btn-success" role="button" routerLinkActive="active" (click)="joinEvent(e.eventid)">Join event</a> </td> 
           </tr>
         </tbody>
       </table>
