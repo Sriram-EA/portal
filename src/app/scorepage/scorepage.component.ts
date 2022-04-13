@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScorepageService } from '../services/scorepage.service';
 
 
@@ -10,10 +10,17 @@ import { ScorepageService } from '../services/scorepage.service';
 })
 export class ScorepageComponent implements OnInit {
 
-  constructor(private actRoute : ActivatedRoute,private service:ScorepageService) { } 
+  constructor(private actRoute : ActivatedRoute,private service:ScorepageService, private router:Router) { } 
 
   itemid:any; 
-  itemData:any;
+  itemData:any; 
+  scoreErrorFlag:boolean = false; 
+  scoreObj:any; 
+  scoreResponseMessage:any; 
+  isScoreAlreadySubmitted:boolean =false; 
+  isScorePresentData:any;
+
+  
 
   ngOnInit(): void { 
     
@@ -22,15 +29,58 @@ export class ScorepageComponent implements OnInit {
       console.log("Item id in score page", this.itemid); 
       this.service.getParticularItemDetail(this.itemid).subscribe(data=>{
         this.itemData=data; 
-        console.log(this.itemData);
-      })
+        console.log("Item Data: ", this.itemData); 
+        this.service.checkIfScoreAlreadySubmitted(localStorage.getItem("psno"),this.itemid).subscribe(data=>{ 
+          this.isScorePresentData=data; 
+          console.log("Current Score data: ", this.isScorePresentData); 
+          console.log("Current Score data Length: ", this.isScorePresentData.length);
+          if(this.isScorePresentData.length>=1) 
+          {
+            this.isScoreAlreadySubmitted=true;
+          } 
+          else 
+          {
+            this.isScoreAlreadySubmitted=false;
+          }
+
+        });
+      });
     });
 
   } 
 
-  submitScore()
+  submitScore(itemid:any)
   {
-    console.log("Submit Score Button Clicked");
+    console.log("Submit Score Button Clicked"); 
+    let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;  
+
+    console.log("itemid: ",itemid, "Selected Score: ",score); 
+    if(score==="")
+    {
+      console.log("Blank Value");  
+      this.scoreErrorFlag=true;
+    } 
+    else 
+    {
+      console.log("Valid Score"); 
+      this.scoreErrorFlag=false; 
+      this.scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
+      this.service.InsertScoreToDatabase(this.scoreObj).subscribe(data=>{
+        this.scoreResponseMessage=(data.message); 
+        console.log(this.scoreResponseMessage); 
+
+        if(this.scoreResponseMessage==="Score submitted successfully") 
+        {
+          alert("Score Submitted Successfully"); 
+          this.router.navigate(['userdashboard']);
+        } 
+        else if(this.scoreResponseMessage==="This event has been closed")
+        {
+          alert("This Event Has been closed!, So Please try once the event has been opened"); 
+          this.router.navigate(['userdashboard']);
+        }
+      })
+    }
   }
 
 }

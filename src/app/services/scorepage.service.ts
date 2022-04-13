@@ -14,5 +14,15 @@ export class ScorepageService {
   getParticularItemDetail(itemid:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/getparticularitemdetail/'+itemid);
+  } 
+
+  InsertScoreToDatabase(data:any):Observable<any>
+  {
+    return this.http.post(`${this.baseUrl}`+'/insertscoretodatabase',data);
+  }  
+
+  checkIfScoreAlreadySubmitted(psno:any,itemid:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/checkifscorealreadysubmitted/'+psno+'/'+itemid);
   }
 }

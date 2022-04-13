@@ -20,13 +20,15 @@
     </tbody> 
 </table>  
 
-<br>
-<br>
-<Strong style="margin-left: 35%;"> Select your Score in the Dropdown</Strong>
-<br> 
-<br>
 
-<select id="{{itemid}}" style="margin-left: 40%;">
+
+<div *ngIf="!isScoreAlreadySubmitted"> 
+  <br>
+  <br>
+  <Strong style="margin-left: 35%;"> Select your Score in the Dropdown</Strong>
+  <br> 
+  <br>
+  <select id="{{itemid}}" style="margin-left: 40%;">
     <option value="" selected>Select Score</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -38,11 +40,26 @@
     <option value="8">8</option>
     <option value="9">9</option> 
     <option value="10">10</option>
-</select>
-<br> 
-<br>
-<br>
-<div><button class="btn btn-success"  (click)="submitScore()" style="margin-left: 40%;">Submit score</button></div>
+  </select>  
+  <br> 
+  <br>
+  <div *ngIf="scoreErrorFlag" class="alert alert-warning alert-dismissible" style="margin-left: 32%;"> 
+    <label><strong>Please Select a score from the dropdown</strong></label>
+  </div>
+  <br> 
+  <br>
+  <br>
+  <div><button class="btn btn-success"  (click)="submitScore(itemid)" style="margin-left: 40%;">Submit score</button></div>
+
+</div>
 
 
+<div *ngIf="isScoreAlreadySubmitted" style="margin-left: 40%;"> 
+  <br> 
+  <br>
+  <br>
+  <strong>Your Submitted Score is:   </strong> 
+  <strong>{{isScorePresentData[0].score}}</strong> 
+
+</div>
 

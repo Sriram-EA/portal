@@ -1,5 +1,5 @@
 <div class="container"> 
-    {{eventname}} Event
+    <Strong>{{eventname}} Event</Strong>
 </div>
 
 
@@ -11,8 +11,8 @@
         <th scope="col">Item Name</th>
         <th scope="col">Presenter Name</th>
         <th scope="col">Event Id</th>  
-        <!-- <th scope="col">Your Score</th>   -->
-        <th scope="col">Give Score</th>
+        <th scope="col">Give Score</th> 
+        <th scope="col">View Your Score</th>
       </tr>
     </thead>
     <tbody> 
@@ -22,32 +22,13 @@
         <td>{{i.itemname}} </td>
         <td>{{i.presentername}}</td>
         <td>{{i.eventid}}</td> 
-        <!-- <td>
-          <select id={{i.itemid}}>
-            <option value="" selected>Select Score</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option> 
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option> 
-            <option value="10">10</option>
-          </select>
-        </td> -->  
-        <!-- <td> 
-            <div *ngIf="scoreItemidArray.indexOf(i.itemid) > -1">
-              <button class="btn btn-success"  (click)="getYourScore(i.itemid)"> Get your score</button> 
-              <label *ngIf="scoreDisplayFlag"><strong>{{score}}</strong></label>
-            </div> 
-            <div *ngIf="scoreItemidArray.indexOf(i.itemid) == -1"> Not Available</div>
-        </td> -->
-        
         <td> 
           <div *ngIf="scoreItemidArray.indexOf(i.itemid) > -1"> Score Already submitted</div>
           <a [routerLink]="['/score', i.itemid]" class="btn btn-danger" role="button" routerLinkActive="active" *ngIf="scoreItemidArray.indexOf(i.itemid) == -1" (click)="giveScore(i.itemid)"> Give Score </a>
+        </td> 
+        <td>
+          <a [routerLink]="['/score', i.itemid]" class="btn btn-success" role="button" routerLinkActive="active" *ngIf="scoreItemidArray.indexOf(i.itemid) > -1" (click)="viewScore(i.itemid)"> View Score </a> 
+          <div *ngIf="scoreItemidArray.indexOf(i.itemid) == -1"> Submit your Score to View</div>
         </td>
       </tr>
     </tbody>

@@ -60,15 +60,13 @@ export class ItemsComponent implements OnInit {
     console.log("itemID :",itemid); 
     console.log("Score Itemid Array", this.scoreItemidArray);   
     console.log("Score Array", this.scoreArray);  
- 
-    // let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;
-    // console.log("Score : ",score); 
-    // var scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
-    // this.service.submitScore(scoreObj).subscribe(data=>{
-    //   console.log(data)
-    // });
 
-  } 
+  }  
+
+  viewScore(itemid:any)
+  {
+    
+  }
 
   // getYourScore(itemid:any)
   // { 
