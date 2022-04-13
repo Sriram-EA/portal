@@ -19,9 +19,12 @@ export class ItemsComponent implements OnInit {
   scoreItemidArray: Number[] =[]; 
   scoreArray: any[]= []; 
   scoreDisplayFlag: boolean = false; 
-  score:any;
+  score:any;  
+  completedItems:any;
+  totalItems:any;
    
   submitScoreFlag:boolean =false;
+
 
   ngOnInit(): void {  
     
@@ -29,8 +32,9 @@ export class ItemsComponent implements OnInit {
       console.log(data.get('eventid')); 
       this.eventid=data.get('eventid'); 
       this.service.getItemDetail(this.eventid).subscribe(data=>{
-        console.log(data); 
-        this.itemForm=data;    
+        this.itemForm=data;  
+        console.log("itemForm" , this.itemForm); 
+        this.totalItems=this.itemForm.length;     
         this.service.getEventName(this.eventid).subscribe(data=>{
           this.eventname=data[0].eventname; 
           console.log(this.eventname); 
@@ -46,9 +50,12 @@ export class ItemsComponent implements OnInit {
             { 
                 this.scoreArray[i]={"itemid":this.scoreDetails[i].itemid , "score" :this.scoreDetails[i].score};
             } 
-           // console.log("Score Array", this.scoreArray);
+           // console.log("Score Array", this.scoreArray); 
+           this.service.getPendingItemsToBeScored(localStorage.getItem("psno"),this.eventid).subscribe(data=>{
+              this.completedItems=data.scoreditems;
+           });
             
-          })
+          });
         });
       });
     });   

@@ -1,5 +1,6 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserdashboardService } from '../services/userdashboard.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserdashboardService } from '../services/userdashboard.service';
 })
 export class UserdashboardComponent implements OnInit {
 
-  constructor(private service:UserdashboardService) { } 
+  constructor(private service:UserdashboardService, private router:Router) { } 
 
   firstName:any; 
   lastName:any;   
@@ -18,7 +19,9 @@ export class UserdashboardComponent implements OnInit {
   subscribedStatus:any;
   runningFlag: boolean= false; 
   scheduledFlag: boolean = false; 
-  cancelledFlag: boolean =false;
+  cancelledFlag: boolean =false; 
+  loginDate:any; 
+  loginTime:any;
 
 
   ngOnInit(): void {  
@@ -46,8 +49,12 @@ export class UserdashboardComponent implements OnInit {
           if(eventflagdata.cancelled) 
           {
             this.cancelledFlag=true;
-          }
-        })
+          } 
+          this.service.getUserLogintime().subscribe(data=>{
+            this.loginDate=data.date; 
+            this.loginTime=data.time;
+          });
+        });
       });
 
     });
@@ -67,7 +74,16 @@ export class UserdashboardComponent implements OnInit {
       console.log(this.subscribedStatus);
     });
 
+  } 
+
+  logOut()
+  { 
+    if(localStorage.getItem("psno")!=null){									
+      localStorage.removeItem("psno");
+    }   
+    alert("Logged out Successfully");
+    this.router.navigate(['/login'])
+
   }
-  
 
 }

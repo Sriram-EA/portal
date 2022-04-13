@@ -15,7 +15,12 @@ export class UserdashboardService {
   getUserData(id:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/getuserdetails/'+id);
-  } 
+  }  
+
+  getUserLogintime():Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/getuserlogintime');
+  }
 
   getEventDetails():Observable<any>
   {

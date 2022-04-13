@@ -1,11 +1,19 @@
-<p>Welcome <strong>{{firstName}} {{lastName}} </strong></p> 
+<div>
+      <h2>Welcome <strong>{{firstName}} {{lastName}} </strong></h2>   
+      <strong style="margin-left: 40%; width:fit-content ;">Login Status : Active</strong> 
+      <strong style="margin-left: 10%; width:fit-content ;"> Login Time:  {{loginDate}}   {{loginTime}}</strong>  
+      <button class="btn btn-danger"  (click)="logOut()" style="margin-left: 10%; width: fit-content;">Log Out</button>
+</div>
+
+
+<hr>
 
 
 <!-- Sample Running table --> 
 <div> 
     &nbsp;
-    <div class="container">
-        <strong> Running Events table</strong>
+    <div class="container" style="margin-left: 40%; width: fit-content">
+        <h5><strong> Running Events</strong></h5>
     </div> 
     &nbsp; 
     <div class="container" *ngIf="!runningFlag">
@@ -46,8 +54,8 @@
 <!-- Sample Upcoming Scheduled Events --> 
 <div>  
     &nbsp;
-    <div class="container">
-        <strong> Upcoming Scheduled Events </strong>
+    <div class="container" style="margin-left: 38%; width: fit-content;" >
+        <h5><strong> Upcoming Scheduled Events </strong></h5>
     </div> 
     &nbsp; 
     <div class="container" *ngIf="!scheduledFlag">
@@ -88,8 +96,8 @@
 <!-- Sample Closed Events--> 
 <div>  
     &nbsp;
-    <div class="container">
-        <strong>Closed Events table</strong>
+    <div class="container" style="margin-left: 40%; width: fit-content;">
+        <h5><strong>Closed Events</strong></h5>
     </div> 
     &nbsp; 
     <div class="container" *ngIf="!cancelledFlag">

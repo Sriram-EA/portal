@@ -15,7 +15,12 @@ export class ItemsService {
 
     return this.http.get(`${this.baseUrl}`+'/getitemdetail/'+eventid);
   } 
-
+  
+  getPendingItemsToBeScored(psno:any, eventid:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+ '/getpendingitemstobescored/' + psno +'/'+ eventid);
+  }
+  
   getEventName(eventid:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/geteventname/'+eventid);
