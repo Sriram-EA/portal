@@ -46,7 +46,7 @@ export class UserdashboardComponent implements OnInit {
             this.scheduledFlag=true;
           }
           console.log("Cancelled", eventflagdata.cancelled); 
-          if(eventflagdata.cancelled) 
+          if(eventflagdata.cancelled==1) 
           {
             this.cancelledFlag=true;
           } 

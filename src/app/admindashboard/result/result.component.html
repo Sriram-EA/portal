@@ -1,0 +1,61 @@
+
+<h4>Item Detail</h4>
+
+
+<table class="table">
+    <thead class="thead-dark"> 
+    &nbsp;
+      <tr>
+        <th scope="col">Item Id</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Presenter Name</th>
+        <th scope="col">Event Id</th>  
+      </tr>
+    </thead>
+    <tbody> 
+        &nbsp; 
+        <tr *ngFor = "let i of itemData;"> 
+            <th scope="row">{{i.itemid}}</th>
+            <td>{{i.itemname}} </td>
+            <td>{{i.presentername}}</td>
+            <td>{{i.eventid}}</td>
+        </tr>
+    </tbody> 
+</table>  
+
+<br>
+
+<a class="btn btn-danger" role="button" routerLinkActive="active" (click)="goBack()"> Go Back </a> 
+<br>
+<br>
+<div *ngIf="averageUserResultFlag" style="margin-left: 40%;">
+    <h4>Average Normal User Score</h4>
+    <h6 style="margin-left: 10%;">{{averageUserResult}}</h6> 
+</div> 
+<div *ngIf="!averageUserResultFlag" style="margin-left: 40%;">
+    <h6>No Average Score is found for Normal Users</h6> 
+</div>
+<br>
+<br>
+<div *ngIf="averagePanelistResultFlag" style="margin-left: 40%;">
+    <h4>Average Panelist Score</h4>
+    <h6 style="margin-left: 10%;">{{averagePanelistResult}}</h6>
+</div> 
+<div *ngIf="!averagePanelistResultFlag" style="margin-left: 40%;">
+    <h6>No Average Score is found for Panelists</h6>
+</div>
+ 
+<br>
+<br>
+<div *ngIf="averageFinalResultFlag" style="margin-left: 40%;">
+    <h4>Final Average result</h4> 
+    <h6 style="margin-left: 10%;">{{averageFinalResult}}</h6>
+</div> 
+
+<div *ngIf="!averageFinalResultFlag" style="margin-left: 30%;">
+    <h6>Calculation of Final result cannot be done since Either panelist score or normal user score is missing</h6>
+</div>
+    
+
+
+

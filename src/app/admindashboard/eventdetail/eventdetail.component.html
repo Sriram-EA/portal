@@ -1,0 +1,63 @@
+<h4>Event Detail</h4>
+
+<table class="table">
+    <thead class="thead-dark"> 
+    &nbsp;
+      <tr>
+        <th scope="col">Event Id</th>
+        <th scope="col">Event Name</th>
+        <th scope="col">Event Date</th>
+        <th scope="col">Start Time</th>  
+        <th scope="col">End Time</th> 
+        <th scope="col">Organizer Name</th> 
+        <th scope="col">Account Name</th> 
+        <th scope="col">Event Flag</th>
+      </tr>
+    </thead>
+    <tbody> 
+    &nbsp;
+      <tr *ngFor = "let e of eventData;"> 
+        <th scope="row">{{e.eventid}}</th>
+        <td>{{e.eventname}} </td>
+        <td>{{e.eventdate}}</td>
+        <td>{{e.starttime}}</td>  
+        <td>{{e.endtime}}</td>
+        <td>{{e.organizername}}</td> 
+        <td>{{e.accountname}}</td> 
+        <td>{{e.eventflag}}</td>
+      </tr> 
+    </tbody>
+</table>  
+
+&nbsp; &nbsp;  
+<br>
+<a class="btn btn-danger" role="button" routerLinkActive="active" (click)="goToItem()" style="margin-left: 44%;">Go To items</a> 
+
+  
+<br>
+<br>
+<br>
+
+<div *ngIf="runningFlag">     
+    <a class="btn btn-primary" role="button" routerLinkActive="active" (click)="scheduleEvent()" style="margin-left: 40%;">Schedule event</a>  &nbsp;
+    <a class="btn btn-danger" role="button" routerLinkActive="active" (click)="closeEvent()">Close event</a> 
+
+</div> 
+
+<div *ngIf="scheduledFlag">  
+      
+    <a class="btn btn-success" role="button" routerLinkActive="active" (click)="runEvent()" style="margin-left: 40%;">Start event</a> &nbsp;
+    <a class="btn btn-danger" role="button" routerLinkActive="active" (click)="closeEvent()">Close event</a> 
+</div> 
+
+<div *ngIf="closedFlag">  
+  
+    <a class="btn btn-success" role="button" routerLinkActive="active" (click)="runEvent()" style="margin-left: 40%;">Start event</a>  &nbsp;
+    <a class="btn btn-primary" role="button" routerLinkActive="active" (click)="scheduleEvent()">Schedule event</a> 
+</div>
+
+
+<br>
+<br> 
+
+<a [routerLink]="['/admindashboard']" class="btn btn-danger" role="button" routerLinkActive="active"> Go Back </a> 
