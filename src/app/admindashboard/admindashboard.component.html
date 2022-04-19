@@ -1,4 +1,7 @@
-<h4>Welcome to admin Dashboard</h4>
+<h4>Welcome {{firstName}} {{lastName}} to admin Dashboard </h4>  
+<strong style="margin-left: 40%; width:fit-content ;">Login Status : Active</strong>  
+<strong style="margin-left: 10%; width:fit-content ;"> Login Time:  {{loginDate}}   {{loginTime}}</strong>  
+<button class="btn btn-danger"  (click)="logOut()" style="margin-left: 90%; width: fit-content;">Log Out</button>
 
 &nbsp; 
 
@@ -22,7 +25,6 @@
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
             <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th> 
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -35,8 +37,7 @@
             <td *ngIf="e.eventflag == 'R'">{{e.starttime}}</td> 
             <td *ngIf="e.eventflag == 'R'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'R'">{{e.organizername}}</td>
-            <td *ngIf="e.eventflag == 'R'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'R'">{{e.eventflag}} </td> 
+            <td *ngIf="e.eventflag == 'R'">{{e.accountname}}</td>  
             <td *ngIf="e.eventflag == 'R'"> <a [routerLink]="['/eventdetail', e.eventid]" class="btn btn-success" role="button" routerLinkActive="active">View event</a> </td> 
           </tr>
         </tbody>
@@ -64,8 +65,7 @@
             <th scope="col">Start Time</th> 
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
-            <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th>  
+            <th scope="col">Account Name</th>   
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -79,7 +79,6 @@
             <td *ngIf="e.eventflag == 'S'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'S'">{{e.organizername}}</td>
             <td *ngIf="e.eventflag == 'S'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'S'">{{e.eventflag}} </td> 
             <td *ngIf="e.eventflag == 'S'"> <a [routerLink]="['/eventdetail', e.eventid]" class="btn btn-success" role="button" routerLinkActive="active">View event</a> </td> 
           </tr>
         </tbody>
@@ -109,9 +108,7 @@
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
             <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th>  
             <th scope="col">Action</th>
-
           </tr>
         </thead>
         <tbody> 
@@ -123,8 +120,7 @@
             <td *ngIf="e.eventflag == 'C'">{{e.starttime}}</td> 
             <td *ngIf="e.eventflag == 'C'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'C'">{{e.organizername}}</td>
-            <td *ngIf="e.eventflag == 'C'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'C'">{{e.eventflag}} </td>  
+            <td *ngIf="e.eventflag == 'C'">{{e.accountname}}</td>  
             <td *ngIf="e.eventflag == 'C'"> <a [routerLink]="['/eventdetail', e.eventid]" class="btn btn-success" role="button" routerLinkActive="active">View event</a> </td> 
           </tr>
         </tbody>

@@ -29,8 +29,7 @@
             <th scope="col">Start Time</th> 
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
-            <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th> 
+            <th scope="col">Account Name</th>     
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -44,7 +43,6 @@
             <td *ngIf="e.eventflag == 'R'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'R'">{{e.organizername}}</td>
             <td *ngIf="e.eventflag == 'R'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'R'">{{e.eventflag}} </td> 
             <td *ngIf="e.eventflag == 'R'"> <a [routerLink]="['/items', e.eventid]" class="btn btn-success" role="button" routerLinkActive="active" (click)="joinEvent(e.eventid)">Join event</a> </td> 
           </tr>
         </tbody>
@@ -72,8 +70,7 @@
             <th scope="col">Start Time</th> 
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
-            <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th> 
+            <th scope="col">Account Name</th>             
           </tr>
         </thead>
         <tbody> 
@@ -86,7 +83,6 @@
             <td *ngIf="e.eventflag == 'S'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'S'">{{e.organizername}}</td>
             <td *ngIf="e.eventflag == 'S'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'S'">{{e.eventflag}} </td>
           </tr>
         </tbody>
       </table>
@@ -115,7 +111,6 @@
             <th scope="col">End Time</th>
             <th scope="col">Organizer Name</th> 
             <th scope="col">Account Name</th> 
-            <th scope="col">Event Flag</th> 
 
           </tr>
         </thead>
@@ -129,7 +124,6 @@
             <td *ngIf="e.eventflag == 'C'">{{e.endtime}}</td>
             <td *ngIf="e.eventflag == 'C'">{{e.organizername}}</td>
             <td *ngIf="e.eventflag == 'C'">{{e.accountname}}</td> 
-            <td *ngIf="e.eventflag == 'C'">{{e.eventflag}} </td> 
           </tr>
         </tbody>
       </table>

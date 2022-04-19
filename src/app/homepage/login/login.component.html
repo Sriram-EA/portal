@@ -19,27 +19,30 @@
     <div *ngIf="errorFlag" class="alert alert-warning alert-dismissible">
       <strong>{{ errorMsg }}</strong>
     </div>
+  </div> 
+  <div class="container">
+    <div *ngIf="errorFlagAdmin" class="alert alert-warning alert-dismissible">
+      <strong>{{ errorMsg }}</strong>
+    </div>
   </div>
 
   <form [formGroup]="loginForm">
     <div class="col-lg-4 mt-2">
       <label><strong>PS Number</strong></label>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="psno"
-        placeholder="Enter your PS number"
-      />
+      <input type="text" class="form-control" formControlName="psno" placeholder="Enter your PS number"/>
     </div>
 
     <div class="col-lg-4 mt-2">
       <label><strong>Date of Birth in (DDMMYYYY) format </strong></label>
-      <input
-        type="password"
-        class="form-control"
-        formControlName="dob"
-        placeholder="Enter your Date of Birth"
-      />
+      <input type="password" class="form-control" formControlName="dob" placeholder="Enter your Date of Birth"/>
+    </div> 
+    <div class="col-lg-4 mt-2">  
+      <label><strong> Login as </strong></label><br>
+      <select formControlName="dropdown">
+        <option value="" selected>Select Role</option>
+        <option value="participant">Participant / Panelist</option>
+        <option value="admin">Admin</option>
+      </select> 
     </div>
 
     <div class="col-lg-4 mt-2">

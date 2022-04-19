@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h1>Admin Login Page</h1>
+  
+    &nbsp;
+</div>
+
+<div class="container">
+    <div class="container">
+      <div *ngIf="errorFlag" class="alert alert-warning alert-dismissible">
+        <strong>{{ errorMsg }}</strong>
+      </div>
+    </div> 
+</div> 
+
+<form [formGroup]="loginForm" style="margin-left:8%">
+    <div class="col-lg-4 mt-2">
+      <label><strong>PS Number</strong></label>
+      <input type="text" class="form-control" placeholder="{{psno}}" readonly/>
+    </div>
+
+    <div class="col-lg-4 mt-2">
+      <label><strong>Admin Password </strong></label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Enter your Admin Password"/>
+    </div>  
+
+    <div class="col-lg-4 mt-2">
+        <button class="btn btn-success" (click)="loginAdmin()" [disabled]="loginForm.invalid">Login Admin</button> 
+    </div>
+</form>

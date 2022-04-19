@@ -19,5 +19,15 @@ export class AdmindashboardService {
   getStatusFlagDetails():Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/getstatusflagdetails');
+  } 
+
+  getUserData(id:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/getuserdetails/'+id);
+  }   
+  
+  getUserLogintime():Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/getuserlogintime');
   }
 }

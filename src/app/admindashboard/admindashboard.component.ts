@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdmindashboardService } from '../services/admindashboard.service';
 
 @Component({
@@ -11,9 +12,13 @@ export class AdmindashboardComponent implements OnInit {
   eventData:any; 
   runningFlag: boolean= false; 
   scheduledFlag: boolean = false; 
-  cancelledFlag: boolean =false; 
+  cancelledFlag: boolean =false;  
+  firstName:any; 
+  lastName:any; 
+  loginDate:any; 
+  loginTime:any;
 
-  constructor(private service:AdmindashboardService) { }
+  constructor(private service:AdmindashboardService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -35,9 +40,28 @@ export class AdmindashboardComponent implements OnInit {
         if(eventflagdata.cancelled==1) 
         {
           this.cancelledFlag=true;
-        } 
+        }  
+        this.service.getUserData(localStorage.getItem("psno")).subscribe(data=>{
+          console.log(data[0]); 
+          this.firstName=data[0].firstname; 
+          this.lastName=data[0].lastname;  
+          this.service.getUserLogintime().subscribe(data=>{
+            this.loginDate=data.date; 
+            this.loginTime=data.time;
+          });
+        });
        });
     });
+  } 
+
+  logOut()
+  { 
+    if(localStorage.getItem("psno")!=null){									
+      localStorage.removeItem("psno");
+    }   
+    alert("Logged out Successfully");
+    this.router.navigate(['/login'])
+
   }
 
 }

@@ -16,6 +16,7 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { EventdetailComponent } from './admindashboard/eventdetail/eventdetail.component';
 import { ItemsdetailComponent } from './admindashboard/itemsdetail/itemsdetail.component';
 import { ResultComponent } from './admindashboard/result/result.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ResultComponent } from './admindashboard/result/result.component';
     AdmindashboardComponent,
     EventdetailComponent,
     ItemsdetailComponent,
-    ResultComponent
+    ResultComponent,
+    AdminloginComponent
   ],
   imports: [
     BrowserModule,

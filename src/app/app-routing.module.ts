@@ -4,6 +4,7 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
 import { EventdetailComponent } from './admindashboard/eventdetail/eventdetail.component';
 import { ItemsdetailComponent } from './admindashboard/itemsdetail/itemsdetail.component';
 import { ResultComponent } from './admindashboard/result/result.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { ForgotpasswordComponent } from './homepage/forgotpassword/forgotpassword.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './homepage/login/login.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'forgotpassword',component:ForgotpasswordComponent},
   {path:'items/:eventid',component:ItemsComponent}, 
   {path:'score/:itemid',component:ScorepageComponent}, 
-  {path:'admindashboard',component:AdmindashboardComponent}, 
+  {path:'admindashboard',component:AdmindashboardComponent},  
+  {path:'adminlogin/:psno',component:AdminloginComponent},
   {path:'eventdetail/:eventid',component:EventdetailComponent}, 
   {path:'itemsdetail/:eventid',component:ItemsdetailComponent},
   {path:'result/:itemid',component:ResultComponent}
