@@ -19,6 +19,15 @@ export class ItemsdetailService {
   getItemDetail(eventid:any):Observable<any>{
 
     return this.http.get(`${this.baseUrl}`+'/getitemdetail/'+eventid);
-  } 
+  }  
+
+  getAverageUserResult(itemid:any):Observable<any> 
+  {
+    return this.http.get(`${this.baseUrl}`+'/getaverageuserresult/'+itemid);
+  }  
+  getAveragePanelistResult(itemid:any):Observable<any> 
+  {
+    return this.http.get(`${this.baseUrl}`+'/getaveragepanelistresult/'+itemid);
+  }
   
 }

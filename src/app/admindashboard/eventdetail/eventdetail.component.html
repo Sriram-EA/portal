@@ -6,7 +6,7 @@
       <tr>
         <th scope="col">Event Id</th>
         <th scope="col">Event Name</th>
-        <th scope="col">Event Date</th>
+        <th scope="col">Event Date (YYYY-MM-DD)</th>
         <th scope="col">Start Time</th>  
         <th scope="col">End Time</th> 
         <th scope="col">Organizer Name</th> 
@@ -46,14 +46,32 @@
 <div *ngIf="scheduledFlag">  
       
     <a class="btn btn-success" role="button" routerLinkActive="active" (click)="runEvent()" style="margin-left: 40%;">Start event</a> &nbsp; 
-    <a class="btn btn-primary" role="button" routerLinkActive="active" (click)="scheduleEvent()">Edit Schedule event</a>  &nbsp;
+    <a class="btn btn-primary" role="button" routerLinkActive="active" (click)="rescheduleEvent()">Re-Schedule event</a>  &nbsp;
 </div> 
 
 <div *ngIf="closedFlag">  
-  
-  
 </div>
 
+<div *ngIf="rescheduleEventFlag">
+
+  <form [formGroup]="dateTimeForm" style="margin-left: 37%;">
+    <div class="col-lg-4 mt-2">
+      <label><strong>New Event Date</strong></label>
+      <input type="date" class="form-control" formControlName="eventdate"/>
+    </div> 
+    <div class="col-lg-4 mt-2">
+      <label><strong>New Start Time</strong></label>
+      <input type="time" class="form-control" formControlName="starttime"/>
+    </div>
+    <div class="col-lg-4 mt-2">
+      <label><strong>New End Time</strong></label>
+      <input type="time" class="form-control" formControlName="endtime"/>
+    </div>  
+    <br>
+    <button class="btn btn-success" (click)="submitDateTime()" [disabled]="dateTimeForm.invalid" style="margin-left: 10%;">Re-Schedule event</button>
+  </form>
+
+</div>
 
 <br>
 <br> 

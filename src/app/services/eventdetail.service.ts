@@ -34,5 +34,10 @@ export class EventdetailService {
   closeEvent(eventid:any):Observable<any>
   {
     return this.http.get(`${this.baseUrl}`+'/updatecloseevent/'+eventid);
+  } 
+
+  updateDateandTime(data:any,eventid:any):Observable<any>
+  {
+    return this.http.post(`${this.baseUrl}`+'/updatedateandtime/' + eventid, data)
   }
 }

@@ -4,8 +4,6 @@
   &nbsp;
 
   <a [routerLink]="['/login']" class="btn btn-primary">Login</a>  &nbsp;
-  <a [routerLink]="['/admindashboard']" class="btn btn-primary">Admin Dashboard</a>
-
   &nbsp;
 
   <div>
@@ -51,16 +49,8 @@
         (click)="loginUser()"
         [disabled]="loginForm.invalid"
       >
-        Login User
-      </button>
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <button
-        class="btn btn-danger"
-        (click)="forgotPassword()"
-        [disabled]="loginForm.invalid"
-      >
-        Forgot Password
-      </button>
+        Login User 
+        </button>
     </div>
   </form>
 </div>

@@ -8,7 +8,10 @@
         <th scope="col">Item Name</th>
         <th scope="col">Presenter Name</th>
         <th scope="col">Event Id</th>  
-        <th scope="col">Action</th> 
+        <!-- <th scope="col">Action</th>  --> 
+        <th scope="col">Average Participant score</th>
+        <th scope="col">Average Panelist Score</th>
+        <th scope="col">Final Score</th>
       </tr>
     </thead>
     <tbody> 
@@ -18,9 +21,12 @@
         <td>{{i.itemname}} </td>
         <td>{{i.presentername}}</td>
         <td>{{i.eventid}}</td> 
-        <td>
+        <!-- <td>
             <a [routerLink]="['/result', i.itemid]" class="btn btn-success" role="button" routerLinkActive="active"> Show Score </a>
-        </td>
+        </td>  -->
+        <td>{{i.userscore}}</td> 
+        <td>{{i.panelistscore}}</td>
+        <td>{{i.finalscore}}</td>
       </tr>
     </tbody>
 </table>

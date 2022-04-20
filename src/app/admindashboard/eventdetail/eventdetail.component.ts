@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventdetailService } from 'src/app/services/eventdetail.service';
 
@@ -17,7 +18,14 @@ export class EventdetailComponent implements OnInit {
   runningFlag : boolean = false; 
   scheduledFlag : boolean = false; 
   closedFlag : boolean = false; 
-  updateStatusFlagMessage :any;
+  updateStatusFlagMessage :any; 
+  rescheduleEventFlag:boolean =false; 
+
+  dateTimeForm = new FormGroup({
+    eventdate: new FormControl('', Validators.required),
+    starttime: new FormControl('', Validators.required), 
+    endtime: new FormControl('', Validators.required)
+  });
 
 
   ngOnInit(): void {  
@@ -90,6 +98,29 @@ export class EventdetailComponent implements OnInit {
       }
     });
   }  
+  // Reschedule event  show form 
+  rescheduleEvent()
+  {
+    this.rescheduleEventFlag=true;
+  
+  } 
+  submitDateTime()
+  {
+    console.log("Date and time value", this.dateTimeForm.value); 
+    this.service.updateDateandTime(this.dateTimeForm.value,this.eventid).subscribe(data=>{ 
+      if(data.message==="Updated Date and Time successfully") 
+      {
+        alert("Event Rescheduled successfully!");  
+        window.location.reload();
+      } 
+      else 
+      {
+        alert("Error!, Problem in Backend Query, Try later"); 
+        this.router.navigate(['admindashboard']);
+      }
+
+    });
+  }
 
   // Update C
 
