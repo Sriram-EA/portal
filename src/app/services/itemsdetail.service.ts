@@ -21,13 +21,13 @@ export class ItemsdetailService {
     return this.http.get(`${this.baseUrl}`+'/getitemdetail/'+eventid);
   }  
 
-  getAverageUserResult(itemid:any):Observable<any> 
+  getAverageUserResult(itemid:any,eventid:any):Observable<any> 
   {
-    return this.http.get(`${this.baseUrl}`+'/getaverageuserresult/'+itemid);
+    return this.http.get(`${this.baseUrl}`+'/getaverageuserresult/'+itemid+'/'+eventid);
   }  
-  getAveragePanelistResult(itemid:any):Observable<any> 
+  getAveragePanelistResult(itemid:any,eventid:any):Observable<any> 
   {
-    return this.http.get(`${this.baseUrl}`+'/getaveragepanelistresult/'+itemid);
+    return this.http.get(`${this.baseUrl}`+'/getaveragepanelistresult/'+itemid+'/'+eventid);
   }
   
 }

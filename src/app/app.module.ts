@@ -17,6 +17,8 @@ import { EventdetailComponent } from './admindashboard/eventdetail/eventdetail.c
 import { ItemsdetailComponent } from './admindashboard/itemsdetail/itemsdetail.component';
 import { ResultComponent } from './admindashboard/result/result.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     EventdetailComponent,
     ItemsdetailComponent,
     ResultComponent,
-    AdminloginComponent
+    AdminloginComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 <div>
       <h2>Welcome <strong>{{firstName}} {{lastName}} </strong></h2>   
-      <strong style="margin-left: 40%; width:fit-content ;">Login Status : Active</strong> 
+      <strong style="margin-left: 40%; width:fit-content ;">Login Status : {{loginFlag}}</strong> 
       <strong style="margin-left: 10%; width:fit-content ;"> Login Time:  {{loginDate}}   {{loginTime}}</strong>  
       <button class="btn btn-danger"  (click)="logOut()" style="margin-left: 10%; width: fit-content;">Log Out</button>
 </div>

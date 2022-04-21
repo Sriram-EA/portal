@@ -21,7 +21,8 @@ export class UserdashboardComponent implements OnInit {
   scheduledFlag: boolean = false; 
   cancelledFlag: boolean =false; 
   loginDate:any; 
-  loginTime:any;
+  loginTime:any; 
+  loginFlag:any;
 
 
   ngOnInit(): void {  
@@ -50,9 +51,10 @@ export class UserdashboardComponent implements OnInit {
           {
             this.cancelledFlag=true;
           } 
-          this.service.getUserLogintime().subscribe(data=>{
+          this.service.getUserLogintime(localStorage.getItem("psno")).subscribe(data=>{
             this.loginDate=data.date; 
-            this.loginTime=data.time;
+            this.loginTime=data.time; 
+            this.loginFlag=data.loginflag
           });
         });
       });
@@ -78,12 +80,21 @@ export class UserdashboardComponent implements OnInit {
 
   logOut()
   { 
-    if(localStorage.getItem("psno")!=null){									
-      localStorage.removeItem("psno");
+    if(localStorage.getItem("psno")!=null){	 
+      this.service.logoutUser(localStorage.getItem("psno")).subscribe(data=>{
+        if(data.message==="Logged Out Successfully")
+        {
+          localStorage.removeItem("psno"); 
+          alert("Logged out Successfully");
+          this.router.navigate(['/login']);
+        } 
+        else 
+        {
+          // Error page
+          
+        }
+      });					 
     }   
-    alert("Logged out Successfully");
-    this.router.navigate(['/login'])
-
   }
 
 }

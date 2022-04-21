@@ -17,7 +17,11 @@ export class ItemsdetailComponent implements OnInit {
   resultData:any =[]; 
   averageUserScore:any; 
   averagePanelistScore:any; 
-  averageFinalResult:any;
+  averageFinalResult:any; 
+
+  userScoreArrayObject: any =[]; 
+  panelistScoreArrayObject : any =[]; 
+
 
   ngOnInit(): void { 
 
@@ -28,33 +32,50 @@ export class ItemsdetailComponent implements OnInit {
         this.eventname=data[0].eventname; 
         this.service.getItemDetail(this.eventid).subscribe(data=>{
           this.itemData=data;
-          console.log(this.itemData);  
+          console.log("Item Form Data", this.itemData);  
           //New Code
           for(let i=0;i<this.itemData.length;i++)
-          { 
-            console.log("Inside iteration", i);
-            console.log("Hi",this.itemData[i].itemid); 
-            this.service.getAverageUserResult(this.itemData[i].itemid).subscribe(data=>{
-              console.log("UserScore is",data.userscore);  
-              this.averageUserScore=Math.round(data.userscore);
+          {  
+            this.service.getAverageUserResult(this.itemData[i].itemid,this.eventid).subscribe(data=>{
+              // console.log("UserScore is",data.userscore);    
+              if(data.userscore===null) 
+              {
+                this.averageUserScore=0;
+              } 
+              else 
+              {
+                this.averageUserScore=Math.round(data.userscore);  
+              }  
+
+              this.userScoreArrayObject[i] = {itemid: this.itemData[i].itemid,itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, userscore: this.averageUserScore }   
+              
             });
-              this.service.getAveragePanelistResult(this.itemData[i].itemid).subscribe(data=>{
-                console.log("Panelist Score  is",data.panelistscore);  
+          
+          }    
+          console.log("User Score Array Value at 0th index",this.userScoreArrayObject);
+          
+          for(let i=0;i<this.itemData.length;i++)
+          {  
+            this.service.getAveragePanelistResult(this.itemData[i].itemid,this.eventid).subscribe(data=>{
+              //console.log("Panelist Score  is",data.panelistscore);   
+              if(data.panelistscore===null)
+              {
+                this.averagePanelistScore=0;
+              } 
+              else
+              {
                 this.averagePanelistScore=Math.round(data.panelistscore); 
+              } 
+              this.averageFinalResult=Math.round((0.3*(this.averageUserScore))+(0.7*(this.averagePanelistScore)));    
+              this.panelistScoreArrayObject[i]={itemid: this.itemData[i].itemid, itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, panelistscore: this.averagePanelistScore, finalscore:this.averageFinalResult}
+              console.log("PanelistScore Array", this.panelistScoreArrayObject);
               
-                this.averageFinalResult=Math.round((0.3*(this.averageUserScore))+(0.7*(this.averagePanelistScore)));   
-               
-                this.itemData[i]={itemid: this.itemData[i].itemid,itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, userscore :this.averageUserScore, panelistscore:this.averagePanelistScore, finalscore:this.averageFinalResult}; 
-                console.log(this.resultData); 
-                console.log("Outside iteration", i);
-              
-            });
-          }
+            }); 
+          } 
+           
         });
       });
-    }); 
-    
-
+    });
   } 
 
   goBack()

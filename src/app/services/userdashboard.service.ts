@@ -17,9 +17,9 @@ export class UserdashboardService {
     return this.http.get(`${this.baseUrl}`+'/getuserdetails/'+id);
   }  
 
-  getUserLogintime():Observable<any>
+  getUserLogintime(psno:any):Observable<any>
   {
-    return this.http.get(`${this.baseUrl}`+'/getuserlogintime');
+    return this.http.get(`${this.baseUrl}`+'/getuserlogintime/'+psno);
   }
 
   getEventDetails():Observable<any>
@@ -35,5 +35,10 @@ export class UserdashboardService {
   subscribeUserToEvent(data:any):Observable<any>
   {
     return this.http.post(`${this.baseUrl}`+'/subscribeusertoevent',data);
+  } 
+
+  logoutUser(psno:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/logoutuser/'+psno);
   }
 }

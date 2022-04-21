@@ -26,8 +26,13 @@ export class AdmindashboardService {
     return this.http.get(`${this.baseUrl}`+'/getuserdetails/'+id);
   }   
   
-  getUserLogintime():Observable<any>
+  getUserLogintime(psno:any):Observable<any>
   {
-    return this.http.get(`${this.baseUrl}`+'/getuserlogintime');
+    return this.http.get(`${this.baseUrl}`+'/getuserlogintime/'+psno);
+  } 
+
+  logoutUser(psno:any):Observable<any>
+  {
+    return this.http.get(`${this.baseUrl}`+'/logoutuser/'+psno);
   }
 }
