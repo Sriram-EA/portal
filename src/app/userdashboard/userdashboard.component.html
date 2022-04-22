@@ -23,7 +23,7 @@
         <thead class="thead-dark"> 
          &nbsp;
           <tr>
-            <th scope="col">Event Id</th>
+            <!-- <th scope="col">Event Id</th> -->
             <th scope="col">Event Name</th>
             <th scope="col">Event Date</th>
             <th scope="col">Start Time</th> 
@@ -36,7 +36,7 @@
         <tbody> 
         &nbsp;
           <tr *ngFor = "let e of eventData;"> 
-            <th scope="row" *ngIf="e.eventflag == 'R'">{{e.eventid}}</th>
+            <!-- <th scope="row" *ngIf="e.eventflag == 'R'">{{e.eventid}}</th> -->
             <td *ngIf="e.eventflag == 'R'">{{e.eventname}} </td>
             <td *ngIf="e.eventflag == 'R'">{{e.eventdate}}</td>
             <td *ngIf="e.eventflag == 'R'">{{e.starttime}}</td> 
@@ -64,7 +64,7 @@
         <thead class="thead-dark"> 
         &nbsp;
           <tr>
-            <th scope="col">Event Id</th>
+            <!-- <th scope="col">Event Id</th> -->
             <th scope="col">Event Name</th>
             <th scope="col">Event Date</th>
             <th scope="col">Start Time</th> 
@@ -76,7 +76,7 @@
         <tbody> 
         &nbsp;
           <tr *ngFor = "let e of eventData;"> 
-            <th scope="row" *ngIf="e.eventflag == 'S'">{{e.eventid}}</th>
+            <!-- <th scope="row" *ngIf="e.eventflag == 'S'">{{e.eventid}}</th> -->
             <td *ngIf="e.eventflag == 'S'">{{e.eventname}} </td>
             <td *ngIf="e.eventflag == 'S'">{{e.eventdate}}</td>
             <td *ngIf="e.eventflag == 'S'">{{e.starttime}}</td> 
@@ -104,7 +104,7 @@
         <thead class="thead-dark"> 
             &nbsp;
           <tr>
-            <th scope="col">Event Id</th>
+            <!-- <th scope="col">Event Id</th> -->
             <th scope="col">Event Name</th>
             <th scope="col">Event Date</th>
             <th scope="col">Start Time</th> 
@@ -117,7 +117,7 @@
         <tbody> 
             &nbsp;
           <tr *ngFor = "let e of eventData;"> 
-            <th scope="row" *ngIf="e.eventflag == 'C'">{{e.eventid}}</th>
+            <!-- <th scope="row" *ngIf="e.eventflag == 'C'">{{e.eventid}}</th> -->
             <td *ngIf="e.eventflag == 'C'">{{e.eventname}} </td>
             <td *ngIf="e.eventflag == 'C'">{{e.eventdate}}</td>
             <td *ngIf="e.eventflag == 'C'">{{e.starttime}}</td> 

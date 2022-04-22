@@ -16,7 +16,7 @@ import { ScorepageComponent } from './scorepage/scorepage.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 const routes: Routes = [   
-  {path:'', component:HomepageComponent},
+  {path:'', component:LoginComponent},
   {path:'register',component:RegisterComponent}, 
   {path:'login',component:LoginComponent},
   {path:'userdashboard',component:UserdashboardComponent, canActivate:[AuthGuard]}, 

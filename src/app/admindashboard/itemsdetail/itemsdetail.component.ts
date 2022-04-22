@@ -44,7 +44,7 @@ export class ItemsdetailComponent implements OnInit {
               } 
               else 
               {
-                this.averageUserScore=Math.round(data.userscore);  
+                this.averageUserScore=Number(data.userscore).toFixed(1);  
               }  
 
               this.userScoreArrayObject[i] = {itemid: this.itemData[i].itemid,itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, userscore: this.averageUserScore }   
@@ -64,9 +64,9 @@ export class ItemsdetailComponent implements OnInit {
               } 
               else
               {
-                this.averagePanelistScore=Math.round(data.panelistscore); 
+                this.averagePanelistScore=Number(data.panelistscore).toFixed(1); 
               } 
-              this.averageFinalResult=Math.round((0.3*(this.averageUserScore))+(0.7*(this.averagePanelistScore)));    
+              this.averageFinalResult=((0.3*(this.averageUserScore))+(0.7*(this.averagePanelistScore))).toFixed(1);    
               this.panelistScoreArrayObject[i]={itemid: this.itemData[i].itemid, itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, panelistscore: this.averagePanelistScore, finalscore:this.averageFinalResult}
               console.log("PanelistScore Array", this.panelistScoreArrayObject);
               
