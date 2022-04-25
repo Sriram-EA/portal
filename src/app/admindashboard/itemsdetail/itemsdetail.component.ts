@@ -26,13 +26,13 @@ export class ItemsdetailComponent implements OnInit {
   ngOnInit(): void { 
 
     this.actRoute.paramMap.subscribe(data=>{ 
-      console.log(data.get('eventid')); 
+      // console.log(data.get('eventid')); 
       this.eventid=data.get('eventid');   
       this.service.getEventName(this.eventid).subscribe(data=>{
         this.eventname=data[0].eventname; 
         this.service.getItemDetail(this.eventid).subscribe(data=>{
           this.itemData=data;
-          console.log("Item Form Data", this.itemData);  
+          // console.log("Item Form Data", this.itemData);  
           //New Code
           for(let i=0;i<this.itemData.length;i++)
           {  
@@ -52,7 +52,7 @@ export class ItemsdetailComponent implements OnInit {
             });
           
           }    
-          console.log("User Score Array Value at 0th index",this.userScoreArrayObject);
+          // console.log("User Score Array Value at 0th index",this.userScoreArrayObject);
           
           for(let i=0;i<this.itemData.length;i++)
           {  
@@ -68,7 +68,7 @@ export class ItemsdetailComponent implements OnInit {
               } 
               this.averageFinalResult=((0.3*(this.averageUserScore))+(0.7*(this.averagePanelistScore))).toFixed(1);    
               this.panelistScoreArrayObject[i]={itemid: this.itemData[i].itemid, itemname: this.itemData[i].itemname, presentername: this.itemData[i].presentername, eventid: this.itemData[i].eventid, panelistscore: this.averagePanelistScore, finalscore:this.averageFinalResult}
-              console.log("PanelistScore Array", this.panelistScoreArrayObject);
+              // console.log("PanelistScore Array", this.panelistScoreArrayObject);
               
             }); 
           } 

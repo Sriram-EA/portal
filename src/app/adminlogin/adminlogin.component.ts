@@ -24,7 +24,7 @@ export class AdminloginComponent implements OnInit {
   ngOnInit(): void { 
     this.actRoute.paramMap.subscribe(data=>{
       this.psno=data.get("psno"); 
-      console.log("PS no in admin login page", this.psno); 
+      // console.log("PS no in admin login page", this.psno); 
     });
   } 
 
@@ -34,7 +34,7 @@ export class AdminloginComponent implements OnInit {
     this.service.adminLogin(this.formObject).subscribe(data=>{
       if(data.message==="Matching Successful admin")
       { 
-        console.log("Matching successful log on to admin dashboard"); 
+        // console.log("Matching successful log on to admin dashboard"); 
         localStorage.setItem("psno",data.psno);  
         this.router.navigate(['admindashboard']);
       } 

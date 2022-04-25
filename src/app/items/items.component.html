@@ -11,7 +11,7 @@
         <!-- <th scope="col">Idea Id</th> -->
         <th scope="col">Idea Name</th>
         <th scope="col">Presenter Name</th>
-        <th scope="col">Event Id</th>  
+        <!-- <th scope="col">Event Id</th>   -->
         <th scope="col">Give Score</th> 
         <th scope="col">View Your Score</th>
       </tr>
@@ -22,7 +22,7 @@
         <!-- <th scope="row">{{i.itemid}}</th> -->
         <td>{{i.itemname}} </td>
         <td>{{i.presentername}}</td>
-        <td>{{i.eventid}}</td> 
+        <!-- <td>{{i.eventid}}</td>  -->
         <td> 
           <div *ngIf="scoreItemidArray.indexOf(i.itemid) > -1"> <strong>Score Already submitted</strong></div>
           <a [routerLink]="['/score', i.itemid]" class="btn btn-danger" role="button" routerLinkActive="active" *ngIf="scoreItemidArray.indexOf(i.itemid) == -1" (click)="giveScore(i.itemid)"> Give Score </a>

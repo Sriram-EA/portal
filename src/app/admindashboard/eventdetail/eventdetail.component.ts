@@ -31,14 +31,14 @@ export class EventdetailComponent implements OnInit {
   ngOnInit(): void {  
 
     this.actRoute.paramMap.subscribe(data=>{ 
-      console.log(data.get('eventid')); 
+      // console.log(data.get('eventid')); 
       this.eventid=data.get('eventid');  
       this.service.getParticularEventDetail(this.eventid).subscribe(data=>{ 
         this.eventData=data; 
-        console.log("Event Data in Particular Event detail in admin dashboard", this.eventData); 
+        // console.log("Event Data in Particular Event detail in admin dashboard", this.eventData); 
         this.service.getParticularEventFlag(this.eventid).subscribe(data=>{ 
           this.eventFlag=data[0].eventflag; 
-          console.log("Event Flag: ", this.eventFlag); 
+          // console.log("Event Flag: ", this.eventFlag); 
           if(this.eventFlag==="R")
           {
             this.runningFlag=true;
@@ -68,7 +68,7 @@ export class EventdetailComponent implements OnInit {
   {
     this.service.startEvent(this.eventid).subscribe(data=>{ 
       this.updateStatusFlagMessage=data.message; 
-      console.log(this.updateStatusFlagMessage); 
+      // console.log(this.updateStatusFlagMessage); 
       if(this.updateStatusFlagMessage==="Updated as R successfully")
       {
         alert("Event Flag updated successfully!"); 
@@ -86,7 +86,7 @@ export class EventdetailComponent implements OnInit {
   {
     this.service.scheduleEvent(this.eventid).subscribe(data=>{
       this.updateStatusFlagMessage=data.message; 
-      console.log(this.updateStatusFlagMessage); 
+      // console.log(this.updateStatusFlagMessage); 
       if(this.updateStatusFlagMessage==="Updated as S successfully")
       { 
         alert("Event Flag updated successfully!"); 
@@ -106,7 +106,7 @@ export class EventdetailComponent implements OnInit {
   } 
   submitDateTime()
   {
-    console.log("Date and time value", this.dateTimeForm.value); 
+    // console.log("Date and time value", this.dateTimeForm.value); 
     this.service.updateDateandTime(this.dateTimeForm.value,this.eventid).subscribe(data=>{ 
       if(data.message==="Updated Date and Time successfully") 
       {
@@ -128,7 +128,7 @@ export class EventdetailComponent implements OnInit {
   {
     this.service.closeEvent(this.eventid).subscribe(data=>{ 
       this.updateStatusFlagMessage=data.message; 
-      console.log(this.updateStatusFlagMessage); 
+      // console.log(this.updateStatusFlagMessage); 
       if(this.updateStatusFlagMessage==="Updated as C successfully")
       {
         alert("Event Flag updated successfully!"); 

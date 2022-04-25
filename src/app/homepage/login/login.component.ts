@@ -25,22 +25,22 @@ export class LoginComponent implements OnInit {
   psno:any;
 
   loginUser() {
-    console.log(this.loginForm.value);
+    // console.log(this.loginForm.value);
     this.service.IsEmailValid(this.loginForm.value).subscribe((data) => {
-      console.log('Login service called');
-      console.log(data.message, data.psno);
+      // console.log('Login service called');
+      // console.log(data.message, data.psno);
 
       if (data.message === 'Matching Successful participant') {
         //Matching Successful    // User Does not exist  //  Incorrect Password 
         this.errorFlag=false;
-        console.log('Login to User Dashboard and navigate');  
+        // console.log('Login to User Dashboard and navigate');  
         localStorage.setItem("psno",data.psno);
         this.router.navigate(['userdashboard']);
       } 
       if (data.message === 'Matching Successful admin') {
         //Matching Successful    // admin Does not exist  //  Incorrect Password 
         this.errorFlag=false;
-        console.log('Move to Admin Login page');  
+        // console.log('Move to Admin Login page');  
         localStorage.setItem("psno",data.psno); 
         this.psno=data.psno;
         this.router.navigate(['adminlogin/',data.psno]);

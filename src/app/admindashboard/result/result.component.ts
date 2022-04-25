@@ -25,14 +25,14 @@ export class ResultComponent implements OnInit {
 
     this.actRoute.paramMap.subscribe(data=>{
       this.itemid=data.get("itemid"); 
-      console.log("Item id in result page", this.itemid);  
+      // console.log("Item id in result page", this.itemid);  
       this.service.getParticularItemDetail(this.itemid).subscribe(data=>{
         this.itemData=data;  
         this.eventid=data[0].eventid;
-        console.log("Item Data: ", this.itemData);   
+        // console.log("Item Data: ", this.itemData);   
         this.service.getAverageUserResult(this.itemid).subscribe(data=>{ 
           this.averageUserResult=data.userscore;
-          console.log("Normal User Result", this.averageUserResult);  
+          // console.log("Normal User Result", this.averageUserResult);  
           if(this.averageUserResult!=null)
           {
             this.averageUserResultFlag=true;
@@ -43,7 +43,7 @@ export class ResultComponent implements OnInit {
           }
           this.service.getAveragePanelistResult(this.itemid).subscribe(data=>{
             this.averagePanelistResult=data.panelistscore; 
-            console.log("Panelist Result:", this.averagePanelistResult); 
+            // console.log("Panelist Result:", this.averagePanelistResult); 
             if(this.averagePanelistResult!=null)
             {
               this.averagePanelistResultFlag=true;
@@ -57,7 +57,7 @@ export class ResultComponent implements OnInit {
               this.averageFinalResultFlag=true; 
               
               this.averageFinalResult=Math.round((0.3*(this.averageUserResult))+(0.7*(this.averagePanelistResult)));  
-              console.log(this.averageFinalResult);
+              // console.log(this.averageFinalResult);
             } 
             else 
             {

@@ -27,14 +27,14 @@ export class ScorepageComponent implements OnInit {
     
     this.actRoute.paramMap.subscribe(data=>{
       this.itemid=data.get("itemid"); 
-      console.log("Item id in score page", this.itemid); 
+      // console.log("Item id in score page", this.itemid); 
       this.service.getParticularItemDetail(this.itemid).subscribe(data=>{
         this.itemData=data; 
-        console.log("Item Data: ", this.itemData); 
+        // console.log("Item Data: ", this.itemData); 
         this.service.checkIfScoreAlreadySubmitted(localStorage.getItem("psno"),this.itemid).subscribe(data=>{ 
           this.isScorePresentData=data; 
-          console.log("Current Score data: ", this.isScorePresentData); 
-          console.log("Current Score data Length: ", this.isScorePresentData.length);
+          // console.log("Current Score data: ", this.isScorePresentData); 
+          // console.log("Current Score data Length: ", this.isScorePresentData.length);
           if(this.isScorePresentData.length>=1) 
           {
             this.isScoreAlreadySubmitted=true;
@@ -52,24 +52,24 @@ export class ScorepageComponent implements OnInit {
 
   submitScore(itemid:any)
   {
-    console.log("Submit Score Button Clicked"); 
+    // console.log("Submit Score Button Clicked"); 
     let score=(<HTMLInputElement>document.getElementById(itemid.toString())).value;  
 
-    console.log("itemid: ",itemid, "Selected Score: ",score); 
+    // console.log("itemid: ",itemid, "Selected Score: ",score); 
     if(score==="")
     {
-      console.log("Blank Value");  
+      // console.log("Blank Value");  
       this.scoreErrorFlag=true;
     } 
     else 
     {
-      console.log("Valid Score"); 
+      // console.log("Valid Score"); 
       this.scoreErrorFlag=false; 
       this.scoreObj={"psno": localStorage.getItem("psno"), "score":score, "itemid":itemid};  
       this.service.InsertScoreToDatabase(this.scoreObj).subscribe(data=>{
         this.scoreResponseMessage=(data.message);  
         this.eventid=data.eventid;
-        console.log(this.scoreResponseMessage); 
+        // console.log(this.scoreResponseMessage); 
 
         if(this.scoreResponseMessage==="Score submitted successfully") 
         {

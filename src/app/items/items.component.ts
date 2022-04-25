@@ -29,15 +29,15 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {  
     
     this.actRoute.paramMap.subscribe(data=>{ 
-      console.log(data.get('eventid')); 
+      // console.log(data.get('eventid')); 
       this.eventid=data.get('eventid'); 
       this.service.getItemDetail(this.eventid).subscribe(data=>{
         this.itemForm=data;  
-        console.log("itemForm" , this.itemForm); 
+        // console.log("itemForm" , this.itemForm); 
         this.totalItems=this.itemForm.length;     
         this.service.getEventName(this.eventid).subscribe(data=>{
           this.eventname=data[0].eventname; 
-          console.log(this.eventname); 
+          // console.log(this.eventname); 
           this.service.getScoreDetails(localStorage.getItem("psno")).subscribe(data=>{
             this.scoreDetails=data;  
             // Save in ItemId array; 
@@ -64,9 +64,9 @@ export class ItemsComponent implements OnInit {
 
   giveScore(itemid:any)
   { 
-    console.log("itemID :",itemid); 
-    console.log("Score Itemid Array", this.scoreItemidArray);   
-    console.log("Score Array", this.scoreArray);  
+    // console.log("itemID :",itemid); 
+    // console.log("Score Itemid Array", this.scoreItemidArray);   
+    // console.log("Score Array", this.scoreArray);  
 
   }  
 

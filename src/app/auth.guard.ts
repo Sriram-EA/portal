@@ -12,11 +12,11 @@ export class AuthGuard implements CanActivate {
 
   canActivate():boolean
   {  
-    console.log("PSNO")
+    // console.log("PSNO")
     if(localStorage.getItem("psno")!=null)
     {
       this.service.isAuthValid(localStorage.getItem("psno")).subscribe(data=>{ 
-        console.log("Data message", data.message);
+        // console.log("Data message", data.message);
         if(data.message==="Active")
         {
           return false;
